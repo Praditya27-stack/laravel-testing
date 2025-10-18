@@ -13,7 +13,8 @@ class AttendanceController extends Controller
     {
         $date = $request->get('date', Carbon::today()->toDateString());
         
-        $attendances = Attendance::with('employee')
+        $attendances = Attendance::with(['employee.department', 'employee.position'])
+            ->whereHas('employee') // Only get attendances with valid employee
             ->whereDate('date', $date)
             ->latest()
             ->paginate(20);

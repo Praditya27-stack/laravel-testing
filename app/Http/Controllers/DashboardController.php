@@ -36,7 +36,8 @@ class DashboardController extends Controller
             ->get();
         
         // Recent attendances (show latest regardless of date)
-        $recentAttendances = Attendance::with('employee')
+        $recentAttendances = Attendance::with(['employee.department', 'employee.position'])
+            ->whereHas('employee') // Only get attendances with valid employee
             ->latest('date')
             ->latest('created_at')
             ->take(10)

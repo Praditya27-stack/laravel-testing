@@ -104,6 +104,7 @@
                     <div class="p-6">
                         <div class="space-y-4">
                             @forelse($recentAttendances as $attendance)
+                            @if($attendance->employee)
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="font-medium text-gray-900">{{ $attendance->employee->full_name }}</p>
@@ -118,6 +119,7 @@
                                     {{ ucfirst($attendance->status) }}
                                 </span>
                             </div>
+                            @endif
                             @empty
                             <p class="text-gray-500">No attendance records found.</p>
                             @endforelse

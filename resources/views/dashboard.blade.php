@@ -1,58 +1,16 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
-@section('title', 'Dashboard - ERP HRD System')
-
-@section('content')
-<div class="flex h-screen bg-gray-100">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white shadow-md">
-        <div class="p-6">
-            <h1 class="text-2xl font-bold text-gray-800">ERP HRD</h1>
-            <p class="text-sm text-gray-500">Human Resource</p>
-        </div>
-        
-        <nav class="mt-6">
-            <a href="{{ route('dashboard') }}" class="flex items-center px-6 py-3 text-gray-700 bg-gray-100 border-l-4 border-blue-500">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                </svg>
-                Dashboard
-            </a>
-            
-            <a href="{{ route('employees.index') }}" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-gray-700">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                </svg>
-                Employees
-            </a>
-            
-            <a href="{{ route('attendances.index') }}" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-gray-700">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                </svg>
-                Attendance
-            </a>
-        </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <div class="flex-1 overflow-x-hidden overflow-y-auto">
-        <!-- Header -->
-        <header class="bg-white shadow-sm">
-            <div class="flex items-center justify-between px-8 py-4">
-                <h2 class="text-2xl font-semibold text-gray-800">Dashboard</h2>
-                <div class="flex items-center space-x-4">
-                    <span class="text-sm text-gray-600">Welcome, Admin</span>
-                </div>
-            </div>
-        </header>
-
-        <!-- Dashboard Content -->
-        <main class="p-8">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Stats Cards -->
             <div class="grid grid-cols-1 gap-6 mb-8 md:grid-cols-2 lg:grid-cols-4">
                 <!-- Total Employees -->
-                <div class="p-6 bg-white rounded-lg shadow-sm">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-600">Total Employees</p>
@@ -67,7 +25,7 @@
                 </div>
 
                 <!-- Departments -->
-                <div class="p-6 bg-white rounded-lg shadow-sm">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-600">Departments</p>
@@ -82,7 +40,7 @@
                 </div>
 
                 <!-- Today's Attendance -->
-                <div class="p-6 bg-white rounded-lg shadow-sm">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-600">Today's Attendance</p>
@@ -97,7 +55,7 @@
                 </div>
 
                 <!-- Pending Leaves -->
-                <div class="p-6 bg-white rounded-lg shadow-sm">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-600">Pending Leaves</p>
@@ -115,7 +73,7 @@
             <!-- Recent Data -->
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
                 <!-- Recent Employees -->
-                <div class="bg-white rounded-lg shadow-sm">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="px-6 py-4 border-b border-gray-200">
                         <h3 class="text-lg font-semibold text-gray-800">Recent Employees</h3>
                     </div>
@@ -138,10 +96,10 @@
                     </div>
                 </div>
 
-                <!-- Today's Attendance -->
-                <div class="bg-white rounded-lg shadow-sm">
+                <!-- Recent Attendance -->
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="px-6 py-4 border-b border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800">Today's Attendance</h3>
+                        <h3 class="text-lg font-semibold text-gray-800">Recent Attendance</h3>
                     </div>
                     <div class="p-6">
                         <div class="space-y-4">
@@ -149,7 +107,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="font-medium text-gray-900">{{ $attendance->employee->full_name }}</p>
-                                    <p class="text-sm text-gray-500">Check-in: {{ $attendance->check_in }}</p>
+                                    <p class="text-sm text-gray-500">Check-in: {{ $attendance->check_in ? \Carbon\Carbon::parse($attendance->check_in)->format('H:i') : '-' }}</p>
                                 </div>
                                 <span class="px-3 py-1 text-xs font-medium 
                                     @if($attendance->status == 'present') text-green-700 bg-green-100
@@ -161,13 +119,12 @@
                                 </span>
                             </div>
                             @empty
-                            <p class="text-gray-500">No attendance records today.</p>
+                            <p class="text-gray-500">No attendance records found.</p>
                             @endforelse
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
-</div>
-@endsection
+</x-app-layout>

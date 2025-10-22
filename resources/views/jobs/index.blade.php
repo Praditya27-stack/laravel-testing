@@ -106,8 +106,8 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('signup') }}" class="block w-full bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold">
-                            Lamar Sekarang
+                        <a href="{{ route('jobs.show', $job->id) }}" class="block w-full bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold">
+                            Lihat Detail
                         </a>
                     </div>
                 </div>

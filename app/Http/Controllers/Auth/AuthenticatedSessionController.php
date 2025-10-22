@@ -28,7 +28,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Redirect based on user role
+        $user = auth()->user();
+        
+        if ($user->hasRole(['hrd', 'hr_recruiter', 'admin'])) {
+            return redirect()->intended(route('hrd.dashboard'));
+        } else {
+            // Applicant - redirect to landing page to browse jobs
+            return redirect()->intended(route('home'));
+        }
     }
 
     /**

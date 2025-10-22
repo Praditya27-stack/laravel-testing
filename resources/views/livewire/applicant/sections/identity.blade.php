@@ -1,0 +1,24 @@
+<form wire:submit.prevent="saveIdentity">
+    <div class="grid grid-cols-2 gap-6">
+        <div><label class="block text-sm font-medium mb-2">Nama Lengkap *</label><input type="text" wire:model="identity_full_name" class="w-full px-4 py-2 border rounded-lg" required></div>
+        <div><label class="block text-sm font-medium mb-2">Tempat Lahir *</label><input type="text" wire:model="identity_birth_place" class="w-full px-4 py-2 border rounded-lg" required></div>
+        <div><label class="block text-sm font-medium mb-2">Tanggal Lahir *</label><input type="date" wire:model="identity_birth_date" class="w-full px-4 py-2 border rounded-lg" required></div>
+        <div><label class="block text-sm font-medium mb-2">SIM (A/B/C)</label><input type="text" wire:model="identity_driving_license_types" class="w-full px-4 py-2 border rounded-lg" placeholder="A, B, C"></div>
+        <div><label class="block text-sm font-medium mb-2">Nomor SIM</label><input type="text" wire:model="identity_driving_license_number" class="w-full px-4 py-2 border rounded-lg"></div>
+        <div><label class="block text-sm font-medium mb-2">Nomor KTP *</label><input type="text" wire:model="identity_national_id_number" class="w-full px-4 py-2 border rounded-lg" maxlength="16" required></div>
+        <div><label class="block text-sm font-medium mb-2">Nomor HP *</label><input type="text" wire:model="identity_phone_number" class="w-full px-4 py-2 border rounded-lg" required></div>
+        <div><label class="block text-sm font-medium mb-2">No HP/Telp Orang Tua</label><input type="text" wire:model="identity_parent_phone" class="w-full px-4 py-2 border rounded-lg"></div>
+        <div class="col-span-2"><label class="block text-sm font-medium mb-2">Alamat Sesuai KTP *</label><textarea wire:model="identity_address_ktp" rows="2" class="w-full px-4 py-2 border rounded-lg" required></textarea></div>
+        <div class="col-span-2"><label class="block text-sm font-medium mb-2">Alamat Domisili *</label><textarea wire:model="identity_address_domicile" rows="2" class="w-full px-4 py-2 border rounded-lg" required></textarea></div>
+        <div><label class="block text-sm font-medium mb-2">Email *</label><input type="email" wire:model="identity_email" class="w-full px-4 py-2 border rounded-lg" required></div>
+        <div><label class="block text-sm font-medium mb-2">Agama *</label><select wire:model="identity_religion" class="w-full px-4 py-2 border rounded-lg" required><option value="">Pilih</option><option>Islam</option><option>Kristen</option><option>Katolik</option><option>Hindu</option><option>Buddha</option><option>Konghucu</option></select></div>
+        <div><label class="block text-sm font-medium mb-2">Jenis Kelamin *</label><select wire:model="identity_gender" class="w-full px-4 py-2 border rounded-lg" required><option value="">Pilih</option><option value="L">Laki-laki</option><option value="P">Perempuan</option></select></div>
+        <div><label class="block text-sm font-medium mb-2">Golongan Darah</label><select wire:model="identity_blood_type" class="w-full px-4 py-2 border rounded-lg"><option value="">Pilih</option><option>A</option><option>B</option><option>AB</option><option>O</option></select></div>
+        <div><label class="block text-sm font-medium mb-2">Tinggi Badan (cm)</label><input type="number" wire:model="identity_height_cm" class="w-full px-4 py-2 border rounded-lg"></div>
+        <div><label class="block text-sm font-medium mb-2">Berat Badan (kg)</label><input type="number" wire:model="identity_weight_kg" class="w-full px-4 py-2 border rounded-lg"></div>
+        <div><label class="block text-sm font-medium mb-2">Ukuran Baju</label><select wire:model="identity_shirt_size" class="w-full px-4 py-2 border rounded-lg"><option value="">Pilih</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+        <div><label class="block text-sm font-medium mb-2">Ukuran Celana Panjang</label><select wire:model="identity_pants_size" class="w-full px-4 py-2 border rounded-lg"><option value="">Pilih</option>@for($i=28;$i<=35;$i++)<option value="{{$i}}">{{$i}}</option>@endfor</select></div>
+        <div><label class="block text-sm font-medium mb-2">Ukuran Sepatu</label><select wire:model="identity_shoe_size" class="w-full px-4 py-2 border rounded-lg"><option value="">Pilih</option>@for($i=37;$i<=48;$i++)<option value="{{$i}}">{{$i}}</option>@endfor</select></div>
+    </div>
+    <div class="mt-6 flex justify-end"><button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Simpan Identitas</button></div>
+</form>

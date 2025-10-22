@@ -115,7 +115,9 @@ class RequestHiringApproval extends Component
 
     public function getApproversProperty()
     {
-        return User::role('hr_recruiter|admin')->get();
+        return User::whereHas('roles', function($query) {
+            $query->whereIn('name', ['hr_recruiter', 'admin', 'hrd']);
+        })->get();
     }
 
     public function render()

@@ -44,8 +44,11 @@
                             Sign Up
                         </a>
                     @else
-                        <a href="{{ route('applicant.dashboard') }}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
-                            Dashboard
+                        <a href="{{ route('applicant.profile') }}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
+                            Profile
+                        </a>
+                        <a href="{{ route('applicant.applications') }}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
+                            My Applications
                         </a>
                         <form method="POST" action="{{ route('logout') }}" class="inline">
                             @csrf
@@ -87,8 +90,11 @@
                         Sign Up
                     </a>
                 @else
-                    <a href="{{ route('applicant.dashboard') }}" class="block text-gray-700 hover:bg-blue-50 px-3 py-2 rounded-md text-base font-medium">
-                        Dashboard
+                    <a href="{{ route('applicant.profile') }}" class="block text-gray-700 hover:bg-blue-50 px-3 py-2 rounded-md text-base font-medium">
+                        Profile
+                    </a>
+                    <a href="{{ route('applicant.applications') }}" class="block text-gray-700 hover:bg-blue-50 px-3 py-2 rounded-md text-base font-medium">
+                        My Applications
                     </a>
                 @endguest
             </div>
@@ -97,7 +103,11 @@
 
     <!-- Main Content -->
     <main>
-        @yield('content')
+        @if(isset($slot))
+            {{ $slot }}
+        @else
+            @yield('content')
+        @endif
     </main>
 
     <!-- Footer -->

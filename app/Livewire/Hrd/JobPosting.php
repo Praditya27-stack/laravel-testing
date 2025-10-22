@@ -232,6 +232,6 @@ class JobPosting extends Component
 
     public function render()
     {
-        return view('livewire.hrd.job-posting');
+        return view('livewire.hrd.job-posting')->layout('layouts.hrd');
     }
 }

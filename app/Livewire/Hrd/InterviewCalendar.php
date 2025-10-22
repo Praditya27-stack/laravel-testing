@@ -148,6 +148,6 @@ class InterviewCalendar extends Component
             'interviews' => $interviews,
             'interviewers' => $interviewers,
             'interviewTypes' => $interviewTypes,
-        ]);
+        ])->layout('layouts.hrd');
     }
 }

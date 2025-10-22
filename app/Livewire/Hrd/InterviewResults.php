@@ -173,6 +173,6 @@ class InterviewResults extends Component
             'statistics' => $statistics,
             'interviewers' => $interviewers,
             'interviewTypes' => $interviewTypes,
-        ]);
+        ])->layout('layouts.hrd');
     }
 }

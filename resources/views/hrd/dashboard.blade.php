@@ -23,7 +23,7 @@
             <h1 class="text-2xl font-bold text-gray-800">ERP System</h1>
             <p class="text-sm text-gray-500 mt-1">Human Resources</p>
         </div>
-        
+
         <nav class="mt-6 flex-1 overflow-y-auto">
             <!-- 1. RECRUITMENT ANALYTICS -->
             <div class="mb-2">
@@ -100,35 +100,110 @@
                     </svg>
                     Export Data
                 </a>
-                
+
                 <!-- Online Psychotest Submenu -->
                 <div class="ml-4 mt-2 border-l-2 border-gray-200">
                     <div class="px-6 py-2">
                         <p class="text-xs font-semibold text-gray-500">Online Psychotest</p>
                     </div>
-                    <a href="#" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600">
+                    <a href="{{ route('hrd.psychotest.monitoring') }}" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                         </svg>
                         Monitoring Ongoing
                     </a>
-                    <a href="#" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600">
+                    <a href="{{ route('hrd.psychotest.report') }}" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
                         Psychotest Report
                     </a>
-                    <a href="#" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600">
+                    <a href="{{ route('hrd.psychotest.download') }}" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
                         </svg>
                         Download Report
                     </a>
                 </div>
+
+                <!-- Background Check Submenu -->
+                <div class="ml-4 mt-2 border-l-2 border-gray-200">
+                    <div class="px-6 py-2">
+                        <p class="text-xs font-semibold text-gray-500">Background Check</p>
+                    </div>
+                    <a href="{{ route('hrd.background-check.send') }}" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                        Send BGC Form
+                    </a>
+                    <a href="{{ route('hrd.background-check.results') }}" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                        BGC Results
+                    </a>
+                    <a href="{{ route('hrd.background-check.followup') }}" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Follow-up Pending
+                    </a>
+                </div>
+
+                <!-- Medical Checkup Submenu -->
+                <div class="ml-4 mt-2 border-l-2 border-gray-200">
+                    <div class="px-6 py-2">
+                        <p class="text-xs font-semibold text-gray-500">Medical Checkup</p>
+                    </div>
+                    <a href="{{ route('hrd.medical-checkup.schedule') }}" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        Schedule MCU
+                    </a>
+                    <a href="{{ route('hrd.medical-checkup.status') }}" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        MCU Status & Results
+                    </a>
+                </div>
+
+                <!-- Hiring Approval Submenu -->
+                <div class="ml-4 mt-2 border-l-2 border-gray-200">
+                    <div class="px-6 py-2">
+                        <p class="text-xs font-semibold text-gray-500">Hiring & Onboarding</p>
+                    </div>
+                    <a href="{{ route('hrd.hiring-approval.request') }}" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                        </svg>
+                        Request Approval
+                    </a>
+                    <a href="{{ route('hrd.hiring-approval.status') }}" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                        Approval Status
+                    </a>
+                    <a href="{{ route('hrd.hiring-approval.offer') }}" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Generate Offer Letter
+                    </a>
+                    <a href="{{ route('hrd.hired-candidates') }}" class="sidebar-link flex items-center px-6 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        Hired Candidates
+                    </a>
+                </div>
             </div>
         </nav>
-        
+
         <div class="p-6 border-t">
             <div class="flex items-center">
                 <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
@@ -141,7 +216,7 @@
             </div>
         </div>
     </aside>
-    
+
     <!-- Main Content -->
     <main class="flex-1 overflow-y-auto">
         <!-- Header -->
@@ -151,7 +226,7 @@
                     <h2 class="text-2xl font-bold text-gray-800">Recruitment Analytics</h2>
                     <p class="text-sm text-gray-500 mt-1">Visualisasi data dan progress recruitment</p>
                 </div>
-                
+
                 <div class="flex items-center space-x-4">
                     <button class="relative p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,7 +234,7 @@
                         </svg>
                         <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                     </button>
-                    
+
                     <div class="text-right">
                         <p class="text-sm font-medium text-gray-700">{{ date('l, d F Y') }}</p>
                         <p class="text-xs text-gray-500" id="current-time"></p>
@@ -167,7 +242,7 @@
                 </div>
             </div>
         </header>
-        
+
         <!-- Dashboard Content -->
         <div class="p-8">
             <!-- Stats Cards -->
@@ -192,7 +267,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Lolos Psychotest -->
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow">
                     <div class="flex items-center justify-between">
@@ -210,7 +285,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Lolos User Interview -->
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow">
                     <div class="flex items-center justify-between">
@@ -228,7 +303,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Tahap Offering -->
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow">
                     <div class="flex items-center justify-between">
@@ -247,7 +322,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Charts and Tables Row -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                 <!-- Recruitment Chart -->
@@ -260,16 +335,16 @@
                             <option>Tahun Ini</option>
                         </select>
                     </div>
-                    
+
                     <div class="h-64">
                         <canvas id="recruitmentChart"></canvas>
                     </div>
                 </div>
-                
+
                 <!-- Asal Sekolah/Universitas -->
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                     <h3 class="text-lg font-semibold text-gray-800 mb-6">🎓 Asal Sekolah/Universitas</h3>
-                    
+
                     <div class="space-y-4">
                         <p class="text-xs text-gray-500 mb-3">SMK (Top 5)</p>
                         <div>
@@ -281,7 +356,7 @@
                                 <div class="bg-blue-600 h-2 rounded-full" style="width: 70%"></div>
                             </div>
                         </div>
-                        
+
                         <div>
                             <div class="flex items-center justify-between mb-2">
                                 <span class="text-sm font-medium text-gray-700">SMKN 2 Karawang</span>
@@ -291,7 +366,7 @@
                                 <div class="bg-green-600 h-2 rounded-full" style="width: 55%"></div>
                             </div>
                         </div>
-                        
+
                         <div>
                             <div class="flex items-center justify-between mb-2">
                                 <span class="text-sm font-medium text-gray-700">SMK Taruna Bhakti</span>
@@ -301,7 +376,7 @@
                                 <div class="bg-purple-600 h-2 rounded-full" style="width: 45%"></div>
                             </div>
                         </div>
-                        
+
                         <p class="text-xs text-gray-500 mb-3 mt-4">Universitas (Top 3)</p>
                         <div>
                             <div class="flex items-center justify-between mb-2">
@@ -312,7 +387,7 @@
                                 <div class="bg-orange-600 h-2 rounded-full" style="width: 60%"></div>
                             </div>
                         </div>
-                        
+
                         <div>
                             <div class="flex items-center justify-between mb-2">
                                 <span class="text-sm font-medium text-gray-700">Universitas Singaperbangsa</span>
@@ -322,7 +397,7 @@
                                 <div class="bg-pink-600 h-2 rounded-full" style="width: 48%"></div>
                             </div>
                         </div>
-                        
+
                         <div>
                             <div class="flex items-center justify-between mb-2">
                                 <span class="text-sm font-medium text-gray-700">Politeknik Negeri Jakarta</span>
@@ -335,7 +410,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Recent Activities and Pending Requests -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Pengajuan Cuti Terbaru -->
@@ -344,7 +419,7 @@
                         <h3 class="text-lg font-semibold text-gray-800">Pengajuan Cuti Terbaru</h3>
                         <a href="#" class="text-sm text-blue-600 hover:text-blue-700 font-medium">Lihat Semua</a>
                     </div>
-                    
+
                     <div class="space-y-4">
                         @for($i = 0; $i < 4; $i++)
                         <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
@@ -369,14 +444,14 @@
                         @endfor
                     </div>
                 </div>
-                
+
                 <!-- Aktivitas Terbaru -->
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                     <div class="flex items-center justify-between mb-6">
                         <h3 class="text-lg font-semibold text-gray-800">Aktivitas Terbaru</h3>
                         <a href="#" class="text-sm text-blue-600 hover:text-blue-700 font-medium">Lihat Semua</a>
                     </div>
-                    
+
                     <div class="space-y-4">
                         <div class="flex items-start">
                             <div class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3"></div>
@@ -387,7 +462,7 @@
                                 <p class="text-xs text-gray-500 mt-1">2 menit yang lalu</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start">
                             <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3"></div>
                             <div class="flex-1">
@@ -397,7 +472,7 @@
                                 <p class="text-xs text-gray-500 mt-1">15 menit yang lalu</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start">
                             <div class="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3"></div>
                             <div class="flex-1">
@@ -407,7 +482,7 @@
                                 <p class="text-xs text-gray-500 mt-1">1 jam yang lalu</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start">
                             <div class="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3"></div>
                             <div class="flex-1">
@@ -417,7 +492,7 @@
                                 <p class="text-xs text-gray-500 mt-1">2 jam yang lalu</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start">
                             <div class="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3"></div>
                             <div class="flex-1">
@@ -444,7 +519,7 @@
     }
     updateTime();
     setInterval(updateTime, 1000);
-    
+
     // Attendance Chart
     const ctx = document.getElementById('attendanceChart').getContext('2d');
     const attendanceChart = new Chart(ctx, {

@@ -1,0 +1,1 @@
+@livewire('hrd.monitoring-psychotest')

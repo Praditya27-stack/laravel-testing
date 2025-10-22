@@ -67,6 +67,59 @@ class Application extends Model
         );
     }
 
+    // Background Check relationships
+    public function referees()
+    {
+        return $this->hasMany(ApplicationReferee::class);
+    }
+
+    public function backgroundCheckRequests()
+    {
+        return $this->hasMany(BackgroundCheckRequest::class);
+    }
+
+    public function backgroundCheckResponses()
+    {
+        return $this->hasMany(BackgroundCheckResponse::class);
+    }
+
+    public function backgroundCheckResult()
+    {
+        return $this->hasOne(BackgroundCheckResult::class);
+    }
+
+    // Medical Checkup relationships
+    public function medicalCheckupSchedule()
+    {
+        return $this->hasOne(MedicalCheckupSchedule::class);
+    }
+
+    public function medicalCheckupResult()
+    {
+        return $this->hasOne(MedicalCheckupResult::class);
+    }
+
+    public function medicalCheckupRetests()
+    {
+        return $this->hasMany(MedicalCheckupRetest::class);
+    }
+
+    // Hiring Approval relationships
+    public function hiringApprovalRequest()
+    {
+        return $this->hasOne(HiringApprovalRequest::class);
+    }
+
+    public function offerLetter()
+    {
+        return $this->hasOne(OfferLetter::class);
+    }
+
+    public function onboardingInfo()
+    {
+        return $this->hasOne(OnboardingInfo::class);
+    }
+
     // Initialize stages based on job selection type
     public function initializeStages()
     {

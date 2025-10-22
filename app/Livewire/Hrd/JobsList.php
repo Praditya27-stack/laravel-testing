@@ -112,6 +112,6 @@ class JobsList extends Component
 
         return view('livewire.hrd.jobs-list', [
             'jobs' => $jobs,
-        ]);
+        ])->layout('layouts.hrd');
     }
 }

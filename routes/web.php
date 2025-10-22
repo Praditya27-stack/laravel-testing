@@ -18,13 +18,25 @@ Route::get('/guide', function () {
 
 // Job Listings (Public)
 Route::get('/jobs', function () {
-    return view('jobs.index');
+    $jobs = \App\Models\Job::where('status', 'open')
+        ->where(function($query) {
+            $query->where('end_date', '>=', now())
+                  ->orWhere('closing_at', '>=', now())
+                  ->orWhereNull('end_date');
+        })
+        ->orderBy('created_at', 'desc')
+        ->get();
+    return view('jobs.index', compact('jobs'));
 })->name('jobs.index');
 
 // Job Detail (Public)
 Route::get('/jobs/{job}', function () {
-    return view('jobs.show');
+    return view('jobs.index'); // Temporary - will be job detail page
 })->name('jobs.show');
+
+// Background Check Form (Public - for referees)
+Route::get('/background-check/{token}', \App\Livewire\BackgroundCheckForm::class)
+    ->name('bgc.form');
 
 // ========================================
 // AUTHENTICATION ROUTES
@@ -102,17 +114,14 @@ Route::middleware(['auth', 'role:hr_recruiter|admin'])->prefix('hrd')->name('hrd
     })->name('dashboard');
     
     // Job Vacancy Management
-    Route::get('/jobs', function () {
-        return view('hrd.jobs.index');
-    })->name('jobs.index');
+    Route::get('/jobs', \App\Livewire\Hrd\JobsList::class)
+        ->name('jobs.index');
     
-    Route::get('/jobs/create', function () {
-        return view('hrd.jobs.create');
-    })->name('jobs.create');
+    Route::get('/jobs/create', \App\Livewire\Hrd\JobPosting::class)
+        ->name('jobs.create');
     
-    Route::get('/jobs/{id}/edit', function ($id) {
-        return view('hrd.jobs.edit', ['id' => $id]);
-    })->name('jobs.edit');
+    Route::get('/jobs/{id}/edit', \App\Livewire\Hrd\JobPosting::class)
+        ->name('jobs.edit');
     
     // Applications Management
     Route::get('/applications', function () {
@@ -133,22 +142,62 @@ Route::middleware(['auth', 'role:hr_recruiter|admin'])->prefix('hrd')->name('hrd
         return view('hrd.psychotest.send-invitation', ['job_id' => $job_id]);
     })->name('psychotest.send');
     
+    Route::get('/psychotest/monitoring', \App\Livewire\Hrd\MonitoringPsychotest::class)
+        ->name('psychotest.monitoring');
+    
+    Route::get('/psychotest/report', \App\Livewire\Hrd\PsychotestReport::class)
+        ->name('psychotest.report');
+    
+    Route::get('/psychotest/download', \App\Livewire\Hrd\DownloadPsychotestReport::class)
+        ->name('psychotest.download');
+    
     // Interview Management
     Route::get('/interview/schedule/{job_id}/{stage}', function ($job_id, $stage) {
         return view('hrd.interview.schedule', ['job_id' => $job_id, 'stage' => $stage]);
     })->name('interview.schedule');
     
-    Route::get('/interview/calendar', function () {
-        return view('hrd.interview.calendar');
-    })->name('interview.calendar');
+    Route::get('/interview/calendar', \App\Livewire\Hrd\InterviewCalendar::class)
+        ->name('interview.calendar');
     
     Route::get('/interview/assess/{interview_id}', function ($interview_id) {
         return view('hrd.interview.assessment', ['interview_id' => $interview_id]);
     })->name('interview.assess');
     
-    Route::get('/interview/results', function () {
-        return view('hrd.interview.results');
-    })->name('interview.results');
+    Route::get('/interview/results', \App\Livewire\Hrd\InterviewResults::class)
+        ->name('interview.results');
+    
+    // Background Check Management
+    Route::get('/background-check/send', \App\Livewire\Hrd\SendBackgroundCheck::class)
+        ->name('background-check.send');
+    
+    Route::get('/background-check/results', \App\Livewire\Hrd\BackgroundCheckResults::class)
+        ->name('background-check.results');
+    
+    Route::get('/background-check/followup', \App\Livewire\Hrd\BackgroundCheckFollowup::class)
+        ->name('background-check.followup');
+    
+    // Medical Checkup Management
+    Route::get('/medical-checkup/schedule', \App\Livewire\Hrd\ScheduleMedicalCheckup::class)
+        ->name('medical-checkup.schedule');
+    
+    Route::get('/medical-checkup/input/{applicationId}', \App\Livewire\Hrd\InputMcuResult::class)
+        ->name('medical-checkup.input');
+    
+    Route::get('/medical-checkup/status', \App\Livewire\Hrd\MedicalCheckupStatus::class)
+        ->name('medical-checkup.status');
+    
+    // Hiring Approval & Onboarding
+    Route::get('/hiring-approval/request/{applicationId?}', \App\Livewire\Hrd\RequestHiringApproval::class)
+        ->name('hiring-approval.request');
+    
+    Route::get('/hiring-approval/status', \App\Livewire\Hrd\HiringApprovalStatus::class)
+        ->name('hiring-approval.status');
+    
+    Route::get('/hiring-approval/offer/{approvalId?}', \App\Livewire\Hrd\GenerateOfferLetter::class)
+        ->name('hiring-approval.offer');
+    
+    Route::get('/hired-candidates', \App\Livewire\Hrd\HiredCandidates::class)
+        ->name('hired-candidates');
 });
 
 require __DIR__.'/auth.php';

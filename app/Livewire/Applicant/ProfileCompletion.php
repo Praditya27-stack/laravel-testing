@@ -58,7 +58,34 @@ class ProfileCompletion extends Component
             'full_name' => $user->name,
         ]);
 
-        $this->loadPersonalInfo();
+        // Load existing identity data
+        if ($user->identity) {
+            $identity = $user->identity;
+            $this->identity_full_name = $identity->full_name;
+            $this->identity_birth_place = $identity->birth_place;
+            $this->identity_birth_date = $identity->birth_date;
+            $this->identity_driving_license_types = $identity->driving_license_types;
+            $this->identity_driving_license_number = $identity->driving_license_number;
+            $this->identity_national_id_number = $identity->national_id_number;
+            $this->identity_phone_number = $identity->phone_number;
+            $this->identity_parent_phone = $identity->parent_phone;
+            $this->identity_address_ktp = $identity->address_ktp;
+            $this->identity_address_domicile = $identity->address_domicile;
+            $this->identity_email = $identity->email;
+            $this->identity_religion = $identity->religion;
+            $this->identity_gender = $identity->gender;
+            $this->identity_blood_type = $identity->blood_type;
+            $this->identity_height_cm = $identity->height_cm;
+            $this->identity_weight_kg = $identity->weight_kg;
+            $this->identity_shirt_size = $identity->shirt_size;
+            $this->identity_pants_size = $identity->pants_size;
+            $this->identity_shoe_size = $identity->shoe_size;
+        } else {
+            // Auto-fill from user data
+            $this->identity_full_name = $user->name;
+            $this->identity_email = $user->email;
+        }
+
         $this->calculateCompletion();
     }
 
@@ -314,9 +341,47 @@ class ProfileCompletion extends Component
 
     public function calculateCompletion()
     {
-        $this->profile->refresh();
-        $this->profile->calculateCompletionPercentage();
-        $this->completionPercentage = $this->profile->completion_percentage;
+        $user = auth()->user();
+        $completed = 0;
+        $total = 7; // 7 sections (A-G)
+        
+        // A. Identity (check if exists)
+        if ($user->identity && $user->identity->full_name && $user->identity->national_id_number) {
+            $completed++;
+        }
+        
+        // B. Education (check formal education)
+        if ($user->formalEducations()->count() >= 1) {
+            $completed++;
+        }
+        
+        // C. Family (check marital status)
+        if ($user->maritalStatus) {
+            $completed++;
+        }
+        
+        // D. Work (optional - auto complete)
+        $completed++;
+        
+        // E. Motivation (check if exists)
+        if ($user->motivations && $user->motivations->expected_salary) {
+            $completed++;
+        }
+        
+        // F. References (check minimum 3)
+        if ($user->references()->count() >= 3) {
+            $completed++;
+        }
+        
+        // G. Others (check hobbies/strengths)
+        if ($user->hobbies()->count() > 0 || $user->strengthsWeaknesses) {
+            $completed++;
+        }
+        
+        $percentage = round(($completed / $total) * 100);
+        
+        $this->profile->update(['completion_percentage' => $percentage]);
+        $this->completionPercentage = $percentage;
     }
 
     public function setActiveSection($section)
@@ -327,7 +392,21 @@ class ProfileCompletion extends Component
     // A. Identity
     public function saveIdentity()
     {
-        \App\Models\ApplicantIdentity::updateOrCreate(
+        try {
+            $this->validate([
+                'identity_full_name' => 'required|min:3',
+                'identity_birth_place' => 'required',
+                'identity_birth_date' => 'required|date',
+                'identity_national_id_number' => 'required|numeric|digits:16',
+                'identity_phone_number' => 'required|min:10',
+                'identity_address_ktp' => 'required|min:10',
+                'identity_address_domicile' => 'required|min:10',
+                'identity_email' => 'required|email',
+                'identity_religion' => 'required',
+                'identity_gender' => 'required|in:L,P',
+            ]);
+
+            \App\Models\ApplicantIdentity::updateOrCreate(
             ['user_id' => auth()->id()],
             [
                 'full_name' => $this->identity_full_name,
@@ -351,7 +430,13 @@ class ProfileCompletion extends Component
                 'shoe_size' => $this->identity_shoe_size,
             ]
         );
-        session()->flash('message', 'Identitas saved!');
+        
+            $this->calculateCompletion();
+            session()->flash('message', '✅ Identitas berhasil disimpan!');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Error: ' . $e->getMessage());
+            \Log::error('Save Identity Error: ' . $e->getMessage());
+        }
     }
 
     // B. Education helpers
@@ -361,6 +446,56 @@ class ProfileCompletion extends Component
     public function removeLanguageSkill($i) { unset($this->languageSkills[$i]); }
     public function addOrganization() { $this->organizations[] = ['name'=>'','place'=>'','position'=>'','period'=>'']; }
     public function removeOrganization($i) { unset($this->organizations[$i]); }
+    
+    public function saveEducation()
+    {
+        try {
+            // Save non-formal educations
+            foreach ($this->nonFormalEducations as $edu) {
+                if (!empty($edu['name'])) {
+                    \App\Models\NonFormalEducation::create([
+                        'user_id' => auth()->id(),
+                        'name' => $edu['name'],
+                        'place' => $edu['place'],
+                        'period' => $edu['period'],
+                        'notes' => $edu['notes'],
+                    ]);
+                }
+            }
+            
+            // Save language skills
+            foreach ($this->languageSkills as $lang) {
+                if (!empty($lang['language'])) {
+                    \App\Models\LanguageSkill::create([
+                        'user_id' => auth()->id(),
+                        'language' => $lang['language'],
+                        'writing' => $lang['writing'],
+                        'reading' => $lang['reading'],
+                        'grammar' => $lang['grammar'],
+                        'notes' => $lang['notes'],
+                    ]);
+                }
+            }
+            
+            // Save organizations
+            foreach ($this->organizations as $org) {
+                if (!empty($org['name'])) {
+                    \App\Models\OrganizationExperience::create([
+                        'user_id' => auth()->id(),
+                        'name' => $org['name'],
+                        'place' => $org['place'],
+                        'position' => $org['position'],
+                        'period' => $org['period'],
+                    ]);
+                }
+            }
+            
+            $this->calculateCompletion();
+            session()->flash('message', '✅ Pendidikan berhasil disimpan!');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Error: ' . $e->getMessage());
+        }
+    }
 
     // C. Family helpers
     public function addChild() { $this->children[] = ['name'=>'','gender'=>'','birth'=>'','education'=>'','occupation'=>'']; }

@@ -29,7 +29,11 @@
                     <nav class="space-y-1">
                         <button wire:click="setActiveSection('identity')" class="w-full flex items-center justify-between px-3 py-2 text-sm rounded hover:bg-gray-50 {{ $activeSection === 'identity' ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-gray-700' }}">
                             <span>A. Identitas</span>
-                            <span class="text-red-500">⚠</span>
+                            @if(auth()->user()->identity && auth()->user()->identity->full_name)
+                                <span class="text-green-500">✓</span>
+                            @else
+                                <span class="text-red-500">⚠</span>
+                            @endif
                         </button>
 
                         <button wire:click="setActiveSection('education')" class="w-full flex items-center justify-between px-3 py-2 text-sm rounded hover:bg-gray-50 {{ $activeSection === 'education' ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-gray-700' }}">
@@ -70,6 +74,11 @@
                 @if(session()->has('message'))
                 <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded mb-6">
                     <p class="text-green-800">{{ session('message') }}</p>
+                </div>
+                @endif
+                @if(session()->has('error'))
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded mb-6">
+                    <p class="text-red-800">{{ session('error') }}</p>
                 </div>
                 @endif
 

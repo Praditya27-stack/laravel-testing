@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>HRD Dashboard - ERP System</title>
+    <title>HRD Dashboard -  </title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
@@ -21,10 +21,10 @@
     <!-- Sidebar -->
     <aside class="w-64 bg-white shadow-lg flex flex-col">
         <div class="p-6">
-            <h1 class="text-2xl font-bold text-gray-800">ERP System</h1>
-            <p class="text-sm text-gray-500 mt-1">Human Resources</p>
+            <h1 class="text-2xl font-bold text-gray-800">Human Resources </h1>
+            <p class="text-sm text-gray-500 mt-1"></p>
         </div>
-        
+
         <nav class="mt-6 flex-1 overflow-y-auto">
             <!-- 1. RECRUITMENT ANALYTICS -->
             <div class="mb-2">
@@ -54,7 +54,7 @@
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
                     </svg>
-                    📢 Posting Job Vacancy
+                    Posting Job Vacancy
                 </a>
             </div>
 
@@ -67,9 +67,9 @@
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
                     </svg>
-                    Recruitment Process ⭐
+                    Recruitment Process
                 </a>
-                
+
                 <!-- Online Psychotest Submenu -->
                 <div class="ml-4 mt-2 border-l-2 border-gray-200">
                     <div class="px-6 py-2">
@@ -172,7 +172,7 @@
                 </div>
             </div>
         </nav>
-        
+
         <div class="p-6 border-t">
             <div class="flex items-center">
                 <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
@@ -185,7 +185,7 @@
             </div>
         </div>
     </aside>
-    
+
     <!-- Main Content -->
     <main class="flex-1 overflow-y-auto">
         <!-- Header -->

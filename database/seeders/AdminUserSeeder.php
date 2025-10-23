@@ -14,12 +14,14 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         // Create Admin User
-        $admin = User::create([
-            'name' => 'Administrator',
-            'email' => 'admin@aisin.co.id',
-            'password' => Hash::make('Admin@2025'),
-            'email_verified_at' => now(),
-        ]);
+        $admin = User::firstOrCreate(
+            ['email' => 'admin@aisin.co.id'],
+            [
+                'name' => 'Administrator',
+                'password' => Hash::make('Admin@2025'),
+                'email_verified_at' => now(),
+            ]
+        );
 
         $admin->assignRole('admin');
 
@@ -29,12 +31,14 @@ class AdminUserSeeder extends Seeder
         $this->command->line('');
 
         // Create HR Recruiter User
-        $hrRecruiter = User::create([
-            'name' => 'HR Recruiter',
-            'email' => 'hr@aisin.co.id',
-            'password' => Hash::make('HR@2025'),
-            'email_verified_at' => now(),
-        ]);
+        $hrRecruiter = User::firstOrCreate(
+            ['email' => 'hr@aisin.co.id'],
+            [
+                'name' => 'HR Recruiter',
+                'password' => Hash::make('HR@2025'),
+                'email_verified_at' => now(),
+            ]
+        );
 
         $hrRecruiter->assignRole('hr_recruiter');
 
@@ -44,12 +48,14 @@ class AdminUserSeeder extends Seeder
         $this->command->line('');
 
         // Create Interviewer User
-        $interviewer = User::create([
-            'name' => 'Interviewer',
-            'email' => 'interviewer@aisin.co.id',
-            'password' => Hash::make('Interviewer@2025'),
-            'email_verified_at' => now(),
-        ]);
+        $interviewer = User::firstOrCreate(
+            ['email' => 'interviewer@aisin.co.id'],
+            [
+                'name' => 'Interviewer',
+                'password' => Hash::make('Interviewer@2025'),
+                'email_verified_at' => now(),
+            ]
+        );
 
         $interviewer->assignRole('interviewer');
 
@@ -59,12 +65,14 @@ class AdminUserSeeder extends Seeder
         $this->command->line('');
 
         // Create Manager User
-        $manager = User::create([
-            'name' => 'Manager',
-            'email' => 'manager@aisin.co.id',
-            'password' => Hash::make('Manager@2025'),
-            'email_verified_at' => now(),
-        ]);
+        $manager = User::firstOrCreate(
+            ['email' => 'manager@aisin.co.id'],
+            [
+                'name' => 'Manager',
+                'password' => Hash::make('Manager@2025'),
+                'email_verified_at' => now(),
+            ]
+        );
 
         $manager->assignRole('manager');
 
@@ -74,22 +82,19 @@ class AdminUserSeeder extends Seeder
         $this->command->line('');
 
         // Create Test Applicant User
-        $applicant = User::create([
-            'name' => 'Test Applicant',
-            'email' => 'applicant@test.com',
-            'password' => Hash::make('Applicant@2025'),
-            'email_verified_at' => now(),
-        ]);
+        $applicant = User::firstOrCreate(
+            ['email' => 'applicant@test.com'],
+            [
+                'name' => 'Test Applicant',
+                'password' => Hash::make('Applicant@2025'),
+                'email_verified_at' => now(),
+            ]
+        );
 
         $applicant->assignRole('applicant');
 
         $this->command->info('Test Applicant user created successfully!');
         $this->command->info('Email: applicant@test.com');
         $this->command->info('Password: Applicant@2025');
-        $this->command->line('');
-
-        $this->command->info('===========================================');
-        $this->command->info('Total 5 users created with different roles!');
-        $this->command->info('===========================================');
     }
 }

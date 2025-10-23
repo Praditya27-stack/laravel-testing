@@ -9,7 +9,7 @@ Sistem ERP Recruitment berbasis Laravel 12 + Livewire untuk mengelola proses rek
 - **Framework:** Laravel 12.34.0
 - **PHP:** 8.3.26
 - **Frontend:** Livewire 3.x, TailwindCSS
-- **Database:** SQLite (development) / PostgreSQL (production)
+- **Database:** PostgreSQL
 - **Authentication:** Laravel Breeze
 - **Permissions:** Spatie Laravel Permission
 
@@ -458,10 +458,10 @@ Text:
 ---
 
 ## 🐛 Known Issues
-1. Database using SQLite (should be PostgreSQL in production)
-2. Formal education save logic not implemented
-3. Document upload size limit (2MB)
-4. No email notification system yet
+1. Formal education save logic not fully implemented
+2. Document upload size limit (2MB)
+3. No email notification system yet
+4. Some sections (C-G) need complete save logic implementation
 
 ---
 
